@@ -1,0 +1,89 @@
+SELECT *
+    FROM Clients
+    WHERE cpcli between 57600 AND 57800;
+    
+    
+SELECT *    
+    from Clients
+    WHERE codecli IN (1,3,6,10,20);
+    
+SELECT *
+    FROM Clients
+    WHERE nomcli LIKE 'B%';
+
+SELECT *
+    FROM Clients
+    WHERE nomcli LIKE 'B____';
+
+SELECT  Nomcli,
+        Prenomcli
+FROM    Clients
+WHERE   codecli IN (1,3,6,10,20);
+
+
+SELECT Villecli
+    FROM Clients;
+    
+SELECT DISTINCT Villecli
+            FROM Clients;
+    
+SELECT  Nomcli AS 'Nouveau Nom',
+        prenomcli AS 'Nouveau Prenom',
+        cpcli AS 'adresse postal'
+        FROM Clients;
+
+SELECT *
+        FROM Clients
+        LEFT JOIN Films
+        ON Clients.codecli = Films.codefilm;
+        
+SELECT *
+        FROM Clients AS a
+        LEFT JOIN Films AS b
+        ON a.codecli = b.codefilm;   
+        
+SELECT cl.*,lo.codefilm,lo.codecli AS code2
+        FROM Clients cl
+        INNER JOIN Locations Lo
+        ON cl.codecli = lo.codecli;  
+
+
+SELECT *
+        FROM Clients AS a
+        LEFT JOIN Films AS b
+        ON a.codecli = b.codefilm;   
+        
+SELECT cl.*,lo.codefilm,lo.codecli AS code2
+        FROM Clients cl
+        INNER JOIN Locations Lo
+        ON cl.codecli = lo.codecli;      
+
+SELECT cl.*,cl.codecli,cl.prenomcli,cl.nomcli,lo.datedebut,lo.duree,lo.codefilm,fi.nomfilm
+        FROM Clients cl
+        INNER JOIN Locations Lo
+        ON cl.codecli = lo.codecli
+        INNER JOIN Films Fi
+        ON Lo.codefilm = fi.codefilm;      
+
+SELECT  lo.codefilm,lo.datedebut
+        FROM Films fi
+        LEFT JOIN Locations Lo
+        ON Lo.codefilm = fi.codefilm;   
+        
+        
+SELECT cli.codecli, cli.nomcli,cli.prenomcli,
+        lo.datedebut,lo.duree,fi.codefilm,fi.nomfilm
+        FROM Clients Cli
+        LEFT JOIN Locations Lo
+        ON Cli.codecli=Lo.codecli
+        LEFT JOIN Films Fi
+        ON Lo.codefilm=Fi.codefilm;
+
+        
+SELECT cli.codecli, cli.nomcli,cli.prenomcli,
+        lo.datedebut,lo.duree,fi.codefilm,fi.nomfilm
+        FROM Clients Cli
+        INNER JOIN Locations Lo
+        ON Cli.codecli=Lo.codecli
+        INNER JOIN Films Fi
+        ON Lo.codefilm=Fi.codefilm;
